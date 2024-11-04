@@ -1,6 +1,6 @@
 # Dream Code
 
- Welcome to DreamCode Contests, a platform designed to inspire, challenge, and empower developers and coding enthusiasts through a variety of programming contests and engaging features. If you're passionate about problem-solving and competitive programming, you've found the right place
+ Welcome to DreamCode, a platform designed to inspire, challenge, and empower developers and coding enthusiasts through a variety of programming contests and engaging features. If you're passionate about problem-solving and competitive programming, you've found the right place
 
 # 🚀 Getting Started
 
@@ -15,13 +15,13 @@
 1. Clone the Repository:
 
   ``` bash
-  git clone <https://github.com/vitorS01/dreamcode.git> 
+  git clone https://github.com/vitorS01/dream-code.git
   ```
 
 2. Navigate into the Project Directory:
 
   ```bash
-  cd dreamcode-contests
+  cd dreamcode
   ```
 
 3. Install Dependencies:
@@ -35,5 +35,3 @@
   ```bash
   npm run dev
   ```
-
-Your application should now be running at <http://http://localhost:5173/>.
