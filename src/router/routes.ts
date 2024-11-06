@@ -11,6 +11,8 @@ const routes: Array<RouteRecordRaw> = [
       { path: "contests", component: () => import("../views/Contests.vue") },
       { path: "olympiads", component: () => import("../views/Olympiads.vue") },
       { path: "about-us", component: () => import("../views/AboutUs.vue") },
+      { path: "login", component: () => import("../views/login/Login.vue") },
+      { path: "sign-up", component: () => import("../views/login/SignUp.vue") },
     ],
   },
 ];
