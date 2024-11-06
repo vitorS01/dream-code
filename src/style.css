@@ -1,3 +1,9 @@
+:root {
+  --accent: #7D48BA;
+  --primary: #4F7CAC;
+  --secondary: #75DDDD;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
