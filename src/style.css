@@ -1,7 +1,15 @@
 :root {
   --accent: #7D48BA;
-  --primary: #4F7CAC;
+  --primary: #4444EC;
   --secondary: #75DDDD;
+
+  --white: #F5F5F5;
+
+  --grey-400: #6B6B6B;
+
+  --blue-600: #303057;
+  --blue-900: #1E1E2F;
+
 }
 
 *, *::before, *::after {
@@ -15,7 +23,7 @@ body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--blue-900);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
