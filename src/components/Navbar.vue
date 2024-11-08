@@ -8,8 +8,8 @@ export default {
     <div>
       <nav>
         <ul class="nav-items">
-          <li><RouterLink to="/problemset">Problems</RouterLink></li>
-          <li><RouterLink to="/contests">Contests</RouterLink></li>
+          <li><a href="https://github.com/vitorS01/dream-code" target="_blank">Github</a></li>
+          <li><RouterLink to="/contact">Contato</RouterLink></li>
         </ul>
       </nav>
       <div class="logo" style="display:flex; align-items: center;">
@@ -19,8 +19,8 @@ export default {
       </div>
       <nav>
         <ul class="nav-items">
-          <li><RouterLink to="/olympiads">Olympiads</RouterLink></li>
-          <li><RouterLink to="/about-us">About Us</RouterLink></li>
+          <li><RouterLink to="/guide">Como funciona?</RouterLink></li>
+          <li><RouterLink to="/about-us">Sobre</RouterLink></li>
         </ul>
       </nav>
     </div>
@@ -55,7 +55,6 @@ export default {
   }
 
   .nav-items {
-    list-style: none;
     display: flex;
     gap: 1rem;
   }

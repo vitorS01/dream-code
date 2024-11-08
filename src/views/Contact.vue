@@ -1,14 +1,13 @@
 <script lang="ts">
   export default {
-    name: 'MainPage',
+    name: 'Contact'
   }
 </script>
 
 <template>
-  <div>
-    Here you'll find the main content!
-  </div>
+  Hi contact!
 </template>
 
 <style scoped>
+
 </style>
