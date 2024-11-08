@@ -16,7 +16,7 @@ import { useUserStore } from '../stores/userStore';
 
 <template>
   <div class="profile">
-      <img v-if="isAuthenticated" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi1.rgstatic.net%2Fii%2Fprofile.image%2F661735518253059-1534781450349_Q512%2FThiago-Nepomuceno.jpg&f=1&nofb=1&ipt=60cd19a503fb6d0428b5e64b427d8bc7d8bc45a3fe61a96950bee822281c2e51&ipo=images" alt="Profile Picture">
+      <img v-if="isAuthenticated" src="https://api.neps.academy/image/user-profile/1.png" alt="Profile Picture">
       <div v-else class="btns" >
         <button><RouterLink to="/login">Login</RouterLink></button>
         <button><RouterLink to="/sign-in">Sign up</RouterLink></button>
