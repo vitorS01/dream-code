@@ -39,8 +39,9 @@
   li > a:hover {
     opacity: 1;
   }
-
+  
   .router-link-exact-active {
     opacity: 1;
+    font-weight: bold;
   }
 </style>
