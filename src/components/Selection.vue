@@ -1,41 +1,52 @@
-<script>
+<script lang="ts">
 export default {
   name: 'Selection',
   data() {
     return {
-      // Dropdown visibility state
       dropdownVisible: false,
-      // Available options for selection
-      options: ['Option 1', 'Option 2', 'Option 3'],
-      // List of selected options
-      selectedOptions: [],
+      options: ['Array', 'String', 'Map', 'Dynamic Programming', 'Matemática', 'Ordernação', 'Guloso', 'DFS', 'Busca Binária', 'Arvóre', 'BFS'],
+      selectedOptions: [] as string[],
     };
   },
   methods: {
-    // Toggle dropdown visibility
-    toggleDropdown() {
+    toggleDropdown(event: Event) {
+      event.stopPropagation();
       this.dropdownVisible = !this.dropdownVisible;
     },
-    // Add selected option to selectedOptions
-    selectOption(option) {
+    toggleOption(option: string) {
       if (!this.selectedOptions.includes(option)) {
         this.selectedOptions.push(option);
+      } else {
+        this.selectedOptions.splice(this.selectedOptions.indexOf(option), 1);
       }
-      this.dropdownVisible = false; // Close dropdown after selection
+      this.dropdownVisible = false;
+    },
+    handleClickOutside(event: Event) {
+      const dropdown = this.$el.querySelector('.dropdown');
+      if (dropdown && !dropdown.contains(event.target)) {
+        this.dropdownVisible = false;
+      }
     },
   },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside)
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.handleClickOutside)
+  }
 };
 </script>
 
 <template>
   <div>
-    <!-- Button to toggle dropdown visibility -->
-    <button @click="toggleDropdown">Add</button>
+    <div class="btn" @click="toggleDropdown">
+      <span >Adicionar</span>
+      <ion-icon name="add-outline"></ion-icon>
+    </div>
     
-    <!-- Dropdown menu (only visible when dropdownVisible is true) -->
     <div v-if="dropdownVisible" class="dropdown">
       <ul>
-        <li v-for="option in options" :key="option" @click="selectOption(option)">
+        <li v-for="(option, index) in options" :key="index" @click="toggleOption(option)" :class="{'selected': selectedOptions.includes(option)}">
           {{ option }}
         </li>
       </ul>
@@ -43,42 +54,88 @@ export default {
 
     <!-- Selected options list -->
     <div class="selected-options">
-      <p v-for="(option, index) in selectedOptions" :key="index">{{ option }}</p>
+      <div v-for="(option, index) in selectedOptions" :key="index">
+        <p>{{ option }}</p>
+        <ion-icon name="close-outline" @click="toggleOption(option)"></ion-icon>
+      </div>
     </div>
   </div>
 </template>
 
 
 <style scoped>
-/* Style for the dropdown */
-.dropdown {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px;
-}
-
-.dropdown ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dropdown li {
-  padding: 8px;
+.btn {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  padding: .5rem 1rem;
+  background-color: var(--blue-800);
+  border-radius: 2rem;
   cursor: pointer;
 }
 
-.dropdown li:hover {
-  background-color: #f0f0f0;
+.btn > button {
+  border: none;
+  background: none;
+  pointer-events: none
 }
 
-/* Style for selected options */
-.selected-options p {
-  margin: 5px 0;
-  padding: 5px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
+.dropdown {
+  position: absolute;
+  padding: .5rem;
+  background-color: var(--blue-800);
+  border-radius: .25rem;
+  width: 20rem;
+  height: max-content;
+  z-index: 2;
+}
+
+.dropdown > ul {
+  width: 20rem;
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+
+.dropdown li {
+  width: max-content;
+  padding: .5rem;
+  background-color: var(--blue-900);
+  border-radius: 2rem;
+  border: solid 1px var(--primary);
+  cursor: pointer;
+}
+
+.dropdown li.selected {
+  background-color: var(--primary);
+}
+
+.dropdown li:hover {
+  opacity: .9;
+}
+
+.selected-options {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: .5rem;
+}
+.selected-options > div {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary);
+  padding: .25rem .5rem .25rem 1rem;
+  border-radius: 1rem;
+  gap: .3rem;
+}
+.selected-options >div > ion-icon {
+  font-size: 1.2rem;
+  --ionicon-stroke-width: 3rem;
 }
 </style>
