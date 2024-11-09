@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import "./style.css";
+import "prismjs";
+import "prismjs/themes/prism.css";
 import App from "./App.vue";
 import { useUserStore } from "./stores/userStore";
 
