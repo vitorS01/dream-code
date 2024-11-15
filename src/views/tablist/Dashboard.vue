@@ -18,7 +18,7 @@ import { useUserStore } from '../../stores/userStore';
         <img src="https://api.neps.academy/image/user-profile/1.png" alt="profile pic" />
         <div class="profile-info">
           <h2>{{ username }}</h2>
-          <p>Level: 1</p>
+          <p>Level: 8000+</p>
         </div>
       </div>
 

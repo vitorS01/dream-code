@@ -13,7 +13,7 @@ app.use(pinia);
 
 //TODO: remember to remove mock authentication
 const userStore = useUserStore();
-userStore.login({ email: "test@example.com", id: "123", username: "vi" });
+userStore.login({ email: "test@example.com", id: "123", username: "Thiago Nepomuceno" });
 
 import router from "./router";
 app.use(router);
