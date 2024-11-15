@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: 'Selection',
+  name: 'SelectionPanel',
   data() {
     return {
       dropdownVisible: false,
@@ -8,6 +8,7 @@ export default {
       selectedOptions: [] as string[],
     };
   },
+  emits: ['update:modelValue'],
   methods: {
     toggleDropdown(event: Event) {
       event.stopPropagation();
@@ -20,6 +21,7 @@ export default {
         this.selectedOptions.splice(this.selectedOptions.indexOf(option), 1);
       }
       this.dropdownVisible = false;
+      this.updateValue(this.selectedOptions.join(','));
     },
     handleClickOutside(event: Event) {
       const dropdown = this.$el.querySelector('.dropdown');
@@ -27,6 +29,9 @@ export default {
         this.dropdownVisible = false;
       }
     },
+    updateValue(value: string) {
+      this.$emit('update:modelValue', value);
+    }
   },
   mounted() {
     document.addEventListener('click', this.handleClickOutside)
@@ -52,7 +57,6 @@ export default {
       </ul>
     </div>
 
-    <!-- Selected options list -->
     <div class="selected-options">
       <div v-for="(option, index) in selectedOptions" :key="index">
         <p>{{ option }}</p>
@@ -136,6 +140,7 @@ export default {
 }
 .selected-options >div > ion-icon {
   font-size: 1.2rem;
+  cursor: pointer;
   --ionicon-stroke-width: 3rem;
 }
 </style>

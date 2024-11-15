@@ -18,12 +18,13 @@ export default {
       default: '',
     }
   },
+  emits:['update:modelValue'],
   setup(props, {emit}) {
     const isOpen = ref(false);
     const selected = ref(props.selected)
 
     watch(selected, (newVal) => {
-      emit('update:selected', newVal);
+      emit('update:modelValue', newVal);
     })
 
     return {isOpen, selected}
