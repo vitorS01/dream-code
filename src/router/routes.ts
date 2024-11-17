@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import MainLayout from "../layouts/MainLayout.vue";
 import TabListLayout from "../layouts/TabListLayout.vue";
+import ProblemsLayout from "../layouts/ProblemsLayout.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,12 +29,26 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("../views/tablist/Problems.vue"),
       },
       {
-        path: "problems/generate",
-        component: () => import("../views/tablist/Generate.vue"),
-      },
-      {
         path: "contests",
         component: () => import("../views/tablist/Contests.vue"),
+      },
+    ],
+  },
+  {
+    path: "/problems",
+    component: ProblemsLayout,
+    children: [
+      {
+        path: "generate",
+        component: () => import("../views/tablist/problems/Generate.vue"),
+      },
+      {
+        path: "solve",
+        component: () => import("../views/tablist/problems/Solve.vue"),
+      },
+      {
+        path: "testcases",
+        component: () => import("../views/tablist/problems/Testcases.vue"),
       },
     ],
   },
