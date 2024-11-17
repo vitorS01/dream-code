@@ -72,7 +72,9 @@ select:hover {
   opacity: .9;
 }
 select option {
-  border: none
+  border: none;
+  font-size: .75rem;
+  line-height: 1;
 }
 
 .icon-wrapper {
