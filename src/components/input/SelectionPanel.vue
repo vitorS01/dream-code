@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       dropdownVisible: false,
-      options: ['Array', 'String', 'Map', 'Dynamic Programming', 'Matemática', 'Ordernação', 'Guloso', 'DFS', 'Busca Binária', 'Arvóre', 'BFS'],
+      options: ['Array', 'String', 'Map', 'Dynamic Programming', 'Matemática', 'Ordernação', 'Guloso', 'DFS', 'Busca Binária', 'Árvore', 'BFS'],
       selectedOptions: [] as string[],
     };
   },
@@ -43,13 +43,13 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="selection">
     <div class="btn" @click="toggleDropdown">
       <span >Adicionar</span>
       <ion-icon name="add-outline"></ion-icon>
     </div>
     
-    <div v-if="dropdownVisible" class="dropdown">
+    <div class="dropdown" :class="{'show': dropdownVisible}">
       <ul>
         <li v-for="(option, index) in options" :key="index" @click="toggleOption(option)" :class="{'selected': selectedOptions.includes(option)}">
           {{ option }}
@@ -68,16 +68,21 @@ export default {
 
 
 <style scoped>
+.selection {
+  position: relative;
+}
 .btn {
   position: relative;
   width: fit-content;
+  height: max-content;
   display: flex;
   gap: .5rem;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: .6rem 1rem;
   background-color: var(--blue-800);
   border-radius: 2rem;
   cursor: pointer;
+  font-size: .8rem;
 }
 
 .btn > button {
@@ -85,15 +90,30 @@ export default {
   background: none;
   pointer-events: none
 }
+.btn > span {
+  color: white;
+  font-size: .75rem;
+  line-height: 1;
+}
 
 .dropdown {
   position: absolute;
+  width: 20rem;
+  top: 2.5rem;
+  opacity: 0;
   padding: .5rem;
+  pointer-events: none;
   background-color: var(--blue-800);
   border-radius: .25rem;
-  width: 20rem;
-  height: max-content;
+  transition: opacity .5s ease-in;
+  transition: top .3s ease;
   z-index: 2;
+}
+
+.dropdown.show {
+  top: 2rem;
+  pointer-events: all;
+  opacity: 1;
 }
 
 .dropdown > ul {
@@ -108,6 +128,8 @@ export default {
 .dropdown li {
   width: max-content;
   padding: .5rem;
+  font-size: .8rem;
+  line-height: 1;
   background-color: var(--blue-900);
   border-radius: 2rem;
   border: solid 1px var(--primary);
@@ -127,7 +149,7 @@ export default {
   height: max-content;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: .5rem;
   padding: .5rem;
 }
 .selected-options > div {
@@ -136,11 +158,18 @@ export default {
   background-color: var(--primary);
   padding: .25rem .5rem .25rem 1rem;
   border-radius: 1rem;
-  gap: .3rem;
+  gap: .2rem;
+}
+.selected-options > div > p {
+  font-size: .75rem;
+  line-height: 1;
 }
 .selected-options >div > ion-icon {
-  font-size: 1.2rem;
+  font-size: .9rem;
   cursor: pointer;
+  background-color: var(--blue-600);
+  opacity: 1;
+  border-radius: 2rem;
   --ionicon-stroke-width: 3rem;
 }
 </style>
