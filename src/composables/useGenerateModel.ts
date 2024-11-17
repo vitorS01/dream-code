@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import axios, { AxiosError } from "axios";
 import { ProblemTemplate } from "../types";
+import { useProblemStore } from "../stores/ProblemStore";
 
 export function useGenerateModel() {
   const formData = ref({
@@ -13,6 +14,7 @@ export function useGenerateModel() {
   const loading = ref(false);
   const error = ref<AxiosError | null>(null);
   const result = ref<ProblemTemplate | null>(null);
+  const problemStore = useProblemStore();
 
   const submitForm = async () => {
     loading.value = true;
@@ -33,8 +35,8 @@ export function useGenerateModel() {
           },
         }
       );
-      console.log(response);
       result.value = response.data.body.data;
+      if (result.value) problemStore.setResult(result.value);
     } catch (err: any) {
       error.value = err.response?.data?.message || "An error occured.";
     } finally {
