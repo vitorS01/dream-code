@@ -3,40 +3,67 @@ import { ref } from 'vue';
 import DCSelect from '../../../components/input/DCSelect.vue';
 import Modal from '../../../components/Modal.vue';
 
+import 'highlight.js/lib/common';
+import hljsVuePlugin from "@highlightjs/vue-plugin";
+import { useSolveModel } from '../../../composables/useSolveModel';
+import SkeletonPlaceholder from '../../../components/SkeletonPlaceholder.vue';
+
 export default {
   name: 'Solve',
-  components: {DCSelect, Modal},
+  components: {DCSelect, Modal, highlightjs:hljsVuePlugin.component, SkeletonPlaceholder},
   data() {
-    
-    return {
-      content: 'test',
-    }
+    return {content: ''}
   },
   setup() {
-    const programmingLanguage = ref("");
-    const showAns = ref(true);
+    const showAns = ref(false);
+    const { formData, loading, result, error, submitForm } = useSolveModel();
 
-    return {programmingLanguage, showAns}
+    const handleSubmit = async () => {
+      showAns.value = true;
+      await submitForm()
+    }
+
+    return {
+      formData,
+      loading,
+      error,
+      result,
+      showAns,
+      handleSubmit
+    }
   }
 }
 </script>
 
 <template>
   <Modal v-model="showAns">
-    HELLOO
+    <div class="placeholder" v-if="!result && loading">
+      <SkeletonPlaceholder width="20rem" height="1rem" border-radius="2rem"/>
+      <SkeletonPlaceholder width="20rem" height="1rem" border-radius="2rem"/>
+      <SkeletonPlaceholder width="20rem" height="1rem" border-radius="2rem"/>
+      <SkeletonPlaceholder width="20rem" height="1rem" border-radius="2rem"/>
+    </div>
+<highlightjs v-else autodetect :code="result?.solution"/>
   </Modal>
   <div class="header">
     <h2>Código de resolução</h2>
-    <DCSelect v-model="programmingLanguage" id="language" name="language" :options="[{label: 'C++', value: 'CPP'}, {label: 'Python', value: 'PY'}, {label: 'JavaScript', value: 'JS'}]" selected="CPP"/>
+    <DCSelect v-model="formData.language" id="language" name="language" :options="[{label: 'C++', value: 'CPP'}, {label: 'Python', value: 'PY'}, {label: 'JavaScript', value: 'JS'}]" selected="CPP"/>
   </div>
   <textarea v-model="content" id="editor"></textarea>
   <div class="btns">
     <button>Submeter</button>
-    <button>Gerar resposta</button>
+    <button :disabled="loading" @click="handleSubmit">Gerar resposta</button>
   </div>
 </template>
 
 <style scoped>
+.placeholder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
