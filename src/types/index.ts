@@ -14,3 +14,7 @@ export interface ProblemTemplate {
   sample_output: string;
   notes: string;
 }
+
+export interface SolutionTemplate {
+  solution: string;
+}
