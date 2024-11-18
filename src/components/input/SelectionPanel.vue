@@ -57,7 +57,7 @@ export default {
       </ul>
     </div>
 
-    <div class="selected-options">
+    <div v-if="selectedOptions.length > 0" class="selected-options">
       <div v-for="(option, index) in selectedOptions" :key="index">
         <p>{{ option }}</p>
         <ion-icon name="close-outline" @click="toggleOption(option)"></ion-icon>
