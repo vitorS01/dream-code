@@ -49,6 +49,8 @@ export default {
 
 .modal {
   position: relative;
+  width:fit-content;
+  height: fit-content;
   background-color: var(--blue-600);
   padding: 2rem;
   border-radius: 1rem;
