@@ -68,8 +68,8 @@ export default {
         </thead>
         <tbody>
           <tr>
-            <td><pre>{{ result.sample_input }}</pre></td>
-            <td><pre>{{ result.sample_output }}</pre></td>
+            <td><pre>{{ result?.sample_input ?? '' }}</pre></td>
+            <td><pre>{{ result?.sample_output ?? '' }}</pre></td>
           </tr>
         </tbody>
       </table>
