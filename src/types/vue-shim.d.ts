@@ -4,5 +4,5 @@ declare module "*.vue" {
   export default component;
 }
 
-declare module "prismjs";
+declare module "@highlightjs/vue-plugin";
 declare module "katex";

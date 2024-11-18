@@ -1,11 +1,16 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import "./style.css";
-import "prismjs";
-import "prismjs/themes/prism.css";
 import App from "./App.vue";
 import { useUserStore } from "./stores/userStore";
 import "katex/dist/katex.min.css";
+
+import "highlight.js/styles/github-dark.css";
+import cpp from "highlight.js/lib/languages/cpp";
+import hljs from "highlight.js";
+import hljsVuePlugin from "@highlightjs/vue-plugin";
+
+hljs.registerLanguage("cpp", cpp);
 
 const app = createApp(App);
 
@@ -22,4 +27,5 @@ userStore.login({
 
 import router from "./router";
 app.use(router);
+app.use(hljsVuePlugin);
 app.mount("#app");
